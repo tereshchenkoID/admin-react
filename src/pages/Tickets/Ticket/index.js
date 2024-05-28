@@ -193,11 +193,16 @@ const Ticket = ({ data, action, config_1, config_2, config_3 }) => {
           <Cancel
             data={cancel}
             action={handleCancelled}
+            alt={t('cancel')}
             setCancel={() => {
               setCancel(!cancel)
             }}
           />
-          <Icon icon={'fa-print'} action={e => handlePrint(e)} />
+          <Icon
+            icon={'fa-print'}
+            alt={t('print')}
+            action={e => handlePrint(e)}
+          />
           <Calculate
             data={calculate}
             active={active}

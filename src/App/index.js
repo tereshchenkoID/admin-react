@@ -10,9 +10,18 @@ import Home from 'pages/Home'
 import Toastify from 'components/Toastify'
 
 import style from './index.module.scss'
+import { useEffect } from 'react'
 
 const App = () => {
   const { auth } = useSelector(state => state.auth)
+
+  useEffect(() => {
+    fetch('/config.json')
+      .then(response => response.json())
+      .then(config => {
+        localStorage.setItem('config', JSON.stringify(config.hostnames))
+      })
+  }, [])
 
   return (
     <div className={style.root}>

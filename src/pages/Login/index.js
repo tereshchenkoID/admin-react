@@ -42,7 +42,7 @@ const Login = () => {
     formData.append('username', filter.username)
     formData.append('password', filter.password)
 
-    postData(`login/`, formData).then(json => {
+    postData('login/', formData).then(json => {
       if (json.code === '0') {
         sessionStorage.setItem('authToken', JSON.stringify(json))
         dispatch(setAuth(json))

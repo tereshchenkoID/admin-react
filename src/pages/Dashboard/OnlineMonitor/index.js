@@ -42,7 +42,7 @@ const OnlineMonitor = ({ data }) => {
                 <h4>{convertFixed(el)}</h4>
                 <p>{data.settings.currency}</p>
               </div>
-              <h6>{t(`jackpot_${idx + 1}`)}</h6>
+              <h6>{t(`jackpot_${idx + 1}_contribution`)}</h6>
             </div>
           ))}
         </div>

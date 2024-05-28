@@ -1,6 +1,9 @@
 import { useReactToPrint } from 'react-to-print'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+
+import Barcode from 'react-barcode'
 
 import classNames from 'classnames'
 
@@ -27,6 +30,8 @@ const TicketPrint = ({ data }) => {
       setPrint(false)
     }
   }, [print])
+
+  console.log(data)
 
   return (
     <div className={style.block}>
@@ -60,7 +65,9 @@ const TicketPrint = ({ data }) => {
           <div className={style.title}>
             {t('ticket')} <strong>#{data.id}</strong>
           </div>
-          <div className={style.code}>{data.id}</div>
+          <div className={style.code}>
+            <Barcode value={data.id} displayValue={false} />
+          </div>
           {data.group.length > 0 && (
             <div>
               {data.group.map((el, idx) => (

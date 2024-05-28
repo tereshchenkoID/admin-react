@@ -1,17 +1,17 @@
 @import 'scss/config';
 
+$color: #000;
 
 .block {
   position: relative;
 }
-
-$color: #000;
 
 .wrapper {
   @include make-spacer(p, 20px);
 
   max-width: rem(490px);
   color: $color;
+  font-family: Open Sans, sans-serif;
   font-size: rem(12px);
 }
 
@@ -65,7 +65,7 @@ $color: #000;
 }
 
 .title {
-  @include make-spacer(mb, 20px);
+  @include make-spacer(mb, 15px);
 
   text-align: center;
   text-transform: uppercase;
@@ -76,10 +76,8 @@ $color: #000;
   @include make-spacer(mx, auto);
   @include make-spacer(mb, 20px);
 
-  height: rem(70px);
-  line-height: 1;
-  color: $color;
-  font-family: var(--font-family-code);
+  height: rem(100px);
+  text-align: center;
   font-size: rem(20px);
 }
 

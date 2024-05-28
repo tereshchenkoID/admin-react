@@ -1,7 +1,3 @@
-export const hostnames = {
-  PROD: 'https://api.qool90.bet/api',
-}
-
 export const statuses = {
   STAKE_STATUSES: {
     0: 'OPEN',

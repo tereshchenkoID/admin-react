@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useOutsideClick } from 'hooks/useOutsideClick'
@@ -14,8 +15,9 @@ import style from './index.module.scss'
 const Nav = () => {
   const { t } = useTranslation()
   const { pathname } = useLocation()
-  const [show, setShow] = useState(false)
+  const { settings } = useSelector(state => state.settings)
 
+  const [show, setShow] = useState(false)
   const [active, setActive] = useState(false)
   const menu = [
     {
@@ -102,7 +104,9 @@ const Nav = () => {
               setShow(false)
               setActive(false)
             }}
-          />
+          >
+            <img src={settings.logo} alt="logo" />
+          </Link>
         </div>
         <hr />
         <ul className={style.list}>

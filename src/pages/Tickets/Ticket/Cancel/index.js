@@ -7,12 +7,12 @@ import Icon from 'components/Icon'
 
 import style from './index.module.scss'
 
-const Cancel = ({ data, action, setCancel }) => {
+const Cancel = ({ data, action, setCancel, alt }) => {
   const { t } = useTranslation()
 
   return (
     <>
-      <Icon icon={'fa-times'} action={setCancel} />
+      <Icon icon={'fa-times'} action={setCancel} alt={t(alt || 'add')} />
 
       <div className={classNames(style.modal, data && style.active)}>
         <div className={style.wrapper}>
