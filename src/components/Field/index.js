@@ -6,8 +6,8 @@ import style from './index.module.scss'
 
 const Field = ({
   type,
-  placeholder,
   data,
+  placeholder,
   onChange,
   classes = null,
   required = false,

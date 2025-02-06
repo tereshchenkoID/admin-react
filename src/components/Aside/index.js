@@ -1,5 +1,4 @@
-import { useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import classNames from 'classnames'
 
@@ -10,10 +9,6 @@ import TransferMoney from 'pages/Accounts/TransferMoney'
 import EditAgent from 'pages/Accounts/EditAgent'
 import NewAgent from 'pages/Accounts/NewAgent'
 import Paper from 'components/Paper'
-
-import { useOutsideClick } from 'hooks/useOutsideClick'
-
-import { setAside } from 'store/actions/asideAction'
 
 import style from './index.module.scss'
 
@@ -37,29 +32,17 @@ const checkCmd = data => {
 }
 
 const Aside = () => {
-  const dispatch = useDispatch()
   const { aside } = useSelector(state => state.aside)
-  const blockRef = useRef(null)
-
-  useOutsideClick(
-    blockRef,
-    () => {
-      dispatch(setAside(null))
-    },
-    aside,
-  )
 
   return (
-    <aside
-      ref={blockRef}
-      className={classNames(style.block, aside && style.active)}
-    >
+    <aside className={classNames(style.block, aside && style.active)}>
       {aside && (
         <div className={style.wrapper}>
           <Paper
             headline={aside.meta.title}
             classes={['transparent', 'sm']}
             quantity={false}
+            close={true}
           >
             {checkCmd(aside)}
           </Paper>

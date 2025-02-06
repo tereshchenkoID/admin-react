@@ -1,12 +1,10 @@
-import { useRef, useState } from 'react'
+import { useRef, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import i18n from 'i18next'
 
 import classNames from 'classnames'
 
 import { useOutsideClick } from 'hooks/useOutsideClick'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import style from './index.module.scss'
 
@@ -28,10 +26,11 @@ const Language = () => {
     },
   )
 
-  const handleSearch = data => {
-    return settings.languages.find(lang => lang.code === data)
-  }
-
+  const currentLanguage = useMemo(
+    () => settings.languages.find(lang => lang.code === i18n.language),
+    [settings.languages, i18n.language]
+  )
+  
   return (
     <div
       ref={blockRef}
@@ -41,13 +40,12 @@ const Language = () => {
       }}
     >
       <div ref={buttonRef} className={style.selected}>
-        <span>{handleSearch(i18n.language).text}</span>
-        {settings.languages.length > 1 && (
-          <FontAwesomeIcon
-            icon="fa-solid fa-angle-down"
-            className={style.arrow}
-          />
-        )}
+        <span>{currentLanguage?.text}</span>
+        <img
+          className={style.icon}
+          src={`/images/countries/${currentLanguage?.text}.svg`} 
+          alt={currentLanguage?.text}
+        />
       </div>
       {active && (
         <div className={style.dropdown}>
@@ -63,6 +61,11 @@ const Language = () => {
                     i18n.changeLanguage(el.code)
                   }}
                 >
+                  <img
+                    className={style.icon}
+                    src={`/images/countries/${el.code}.svg`} 
+                    alt={el.code}
+                  />
                   {el.text}
                 </button>
               ),

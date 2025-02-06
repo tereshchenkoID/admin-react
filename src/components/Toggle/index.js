@@ -8,6 +8,8 @@ const Toggle = ({ active, action }) => {
       className={classNames(styles.block, active && styles.active)}
       type={'button'}
       onClick={() => action(!active)}
+      aria-label={'Toggle'}
+      title={'Toggle'}
     >
       <div className={styles.line} />
       <div className={styles.line} />

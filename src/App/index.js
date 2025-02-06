@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -10,7 +11,6 @@ import Home from 'pages/Home'
 import Toastify from 'components/Toastify'
 
 import style from './index.module.scss'
-import { useEffect } from 'react'
 
 const App = () => {
   const { auth } = useSelector(state => state.auth)

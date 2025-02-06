@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { Suspense, useEffect, useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 
 import { router } from 'router'
 
@@ -16,16 +16,31 @@ import style from './index.module.scss'
 
 const Home = () => {
   const dispatch = useDispatch()
+  const location = useLocation()
   const [loading, setLoading] = useState(true)
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     dispatch(setSettings())
     dispatch(setAgents()).then(json => {
       if (json) {
         setLoading(false)
+        setLoaded(true)
       }
     })
   }, [])
+
+  useEffect(() => {
+    if (!loaded)
+      return
+
+    setLoading(true)
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 500)
+
+    return () => clearTimeout(timer)
+  }, [location.pathname])
 
   return loading ? (
     <Loader />

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,6 +10,7 @@ import style from './index.module.scss'
 const File = ({ data, onChange, classes }) => {
   const { t } = useTranslation()
   const [image, setImage] = useState(data)
+  const fileInputRef = useRef(null)
 
   const handleFileChange = event => {
     const file = event.target.files[0]
@@ -26,6 +27,15 @@ const File = ({ data, onChange, classes }) => {
     }
   }
 
+  const handleRemoveFile = () => {
+    setImage(null)
+    onChange(null)
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }
+
   return (
     <div
       className={classNames(
@@ -35,11 +45,13 @@ const File = ({ data, onChange, classes }) => {
     >
       <label className={style.label}>
         <input
+        ref={fileInputRef}
           type={'file'}
+          accept={'image/*'}
           className={style.input}
           onChange={handleFileChange}
         />
-        {data ? (
+        {image ? (
           <div className={style.preview}>
             <img src={image} className={style.img} alt={'Preview'} />
           </div>
@@ -48,13 +60,10 @@ const File = ({ data, onChange, classes }) => {
         )}
       </label>
       <button
-        className={classNames(style.action, !data && style.disabled)}
+        className={classNames(style.action, !image && style.disabled)}
         type={'button'}
         title={t('remove')}
-        onClick={() => {
-          setImage(null)
-          onChange(null)
-        }}
+        onClick={handleRemoveFile}
       >
         <FontAwesomeIcon icon="fa-solid fa-trash" />
       </button>

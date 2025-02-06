@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -6,7 +6,9 @@ import { types, service } from 'constant/config'
 
 import { postData } from 'helpers/api'
 import { convertOptions } from 'helpers/convertOptions'
+
 import { setToastify } from 'store/actions/toastifyAction'
+import { setAgents } from 'store/actions/agentsAction'
 
 import Field from 'components/Field'
 import Button from 'components/Button'
@@ -16,13 +18,14 @@ import Debug from 'modules/Debug'
 
 import style from './index.module.scss'
 
-import { setAgents } from 'store/actions/agentsAction'
-
 const General = ({ data, inherit, setUpdate }) => {
   const { t } = useTranslation()
   const { settings } = useSelector(state => state.settings)
   const dispatch = useDispatch()
-  const [filter, setFilter] = useState(data.general)
+  const [filter, setFilter] = useState({
+    inherit: inherit,
+    ...data.general
+  })
   const isDisabled = inherit === '1'
 
   const handlePropsChange = (fieldName, fieldValue) => {
@@ -36,7 +39,6 @@ const General = ({ data, inherit, setUpdate }) => {
   }
   const handleSubmit = e => {
     e.preventDefault()
-
     const formData = new FormData()
     formData.append('id', data.id)
     formData.append('username', data.username)
@@ -66,6 +68,10 @@ const General = ({ data, inherit, setUpdate }) => {
       }
     })
   }
+
+  useEffect(() => {
+    handlePropsChange('inherit', inherit)
+  }, [inherit])
 
   return (
     <>

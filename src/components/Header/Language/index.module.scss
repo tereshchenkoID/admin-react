@@ -54,6 +54,7 @@
   @include size(100%, 36px);
 
   text-transform: uppercase;
+  gap: rem(12px);
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.04);
@@ -68,4 +69,10 @@
 .arrow {
   @include size(rem(14px));
   @include transition;
+}
+
+.icon {
+  @include size(20px, auto);
+
+  border-radius: rem(2px);
 }

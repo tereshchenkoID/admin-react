@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 
 import { service, ticket } from 'constant/config'
 
+import { postData } from 'helpers/api'
 import { convertOptions } from 'helpers/convertOptions'
+import { setToastify } from 'store/actions/toastifyAction'
+import { setAgents } from 'store/actions/agentsAction'
 
 import Button from 'components/Button'
 import Select from 'components/Select'
@@ -13,6 +17,7 @@ import style from './index.module.scss'
 
 const Business = ({ data, inherit, setUpdate }) => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const [filter, setFilter] = useState(data.business)
   const isDisabled = inherit === '1'
 
@@ -34,10 +39,26 @@ const Business = ({ data, inherit, setUpdate }) => {
     formData.append('id', data.id)
     formData.append('username', data.username)
     formData.append('inherit', inherit)
+    formData.append('data', JSON.stringify(filter))
 
-    Object.entries(filter).map(([key, value]) => {
-      formData.append(key, value)
-      return true
+    postData('accounts/edit/business/', formData).then(json => {
+      if (json.code === '0') {
+        dispatch(
+          setToastify({
+            type: 'success',
+            text: json.message,
+          }),
+        )
+        setUpdate(true)
+        dispatch(setAgents())
+      } else {
+        dispatch(
+          setToastify({
+            type: 'error',
+            text: json.error_message,
+          }),
+        )
+      }
     })
   }
 
