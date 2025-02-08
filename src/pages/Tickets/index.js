@@ -2,21 +2,21 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
-import { statuses, types } from 'constant/config'
+import { DEFAULT, statuses, types } from 'constant/config'
+
+import { getDate } from 'helpers/getDate'
+import { postData } from 'helpers/api'
+import { convertOptions } from 'helpers/convertOptions'
 
 import Debug from 'modules/Debug'
 import Pagination from 'modules/Pagination'
+import Agents from 'modules/Agents'
 import Paper from 'components/Paper'
 import Field from 'components/Field'
 import Select from 'components/Select'
 import Button from 'components/Button'
 import Loader from 'components/Loader'
-
 import Ticket from './Ticket'
-
-import { getDate } from 'helpers/getDate'
-import { postData } from 'helpers/api'
-import { convertOptions } from 'helpers/convertOptions'
 
 import style from './index.module.scss'
 
@@ -114,18 +114,24 @@ const config_3 = [
 ]
 
 const Tickets = () => {
+  const { agents } = useSelector(state => state.agents)
+  
   const initialValue = {
-    ticket: '',
-    username: '',
-    state: '',
-    type: '',
+    'agent': {
+      'id': agents[0].id,
+      'username': agents[0].username,
+    },
+    'ticket': '',
+    'username': '',
+    'state': DEFAULT,
+    'type': DEFAULT,
     'date-from': getDate(new Date().setHours(0, 0, 0, 0), 'datetime-local'),
     'date-to': getDate(new Date(), 'datetime-local'),
     'amount-from': '',
     'amount-to': '',
-    currency: '',
+    'currency': DEFAULT,
     'payout-from': '',
-    'payout-to': '',
+    'payout-to': ''
   }
   const { t } = useTranslation()
 
@@ -177,10 +183,13 @@ const Tickets = () => {
     const formData = new FormData()
     formData.append('page', pagination.page)
     formData.append('quantity', pagination.quantity)
+    formData.append('id', filter.agent.id)
 
     Object.entries(filter).map(([key, value]) => {
-      formData.append(key, value)
-      return true
+      if(key !== 'agent') {
+        formData.append(key, value)
+        return true
+      }
     })
 
     postData(`tickets/`, formData).then(json => {
@@ -241,11 +250,10 @@ const Tickets = () => {
         <form onSubmit={handleSubmit}>
           <div className={style.grid}>
             <div>
-              <Field
-                type={'text'}
-                placeholder={t('ticket')}
-                data={filter.ticket}
-                onChange={value => handlePropsChange('ticket', value)}
+              <Agents
+                data={filter.agent}
+                options={agents}
+                onChange={value => handlePropsChange('agent', value)}
               />
             </div>
             <div>
@@ -257,9 +265,20 @@ const Tickets = () => {
               />
             </div>
             <div>
+              <Field
+                type={'text'}
+                placeholder={t('ticket')}
+                data={filter.ticket}
+                onChange={value => handlePropsChange('ticket', value)}
+              />
+            </div>
+            <div>
               <Select
                 placeholder={t('state')}
-                options={convertOptions(statuses.TICKET_STATUSES)}
+                options={[
+                  { value: DEFAULT, label: t('all') },
+                  ...convertOptions(statuses.TICKET_STATUSES)
+                ]}
                 data={filter.state}
                 onChange={value => handlePropsChange('state', value)}
               />
@@ -267,7 +286,10 @@ const Tickets = () => {
             <div>
               <Select
                 placeholder={t('player_type')}
-                options={convertOptions(types.PLAYER_TYPE)}
+                options={[
+                  { value: DEFAULT, label: t('all') },
+                  ...convertOptions(types.PLAYER_TYPE)
+                ]}
                 data={filter.type}
                 onChange={value => handlePropsChange('type', value)}
               />
@@ -307,10 +329,13 @@ const Tickets = () => {
             <div>
               <Select
                 placeholder={t('currency')}
-                options={settings.currencies.map(currency => ({
-                  value: currency,
-                  label: currency,
-                }))}
+                options={[
+                  { value: DEFAULT, label: t('all') },
+                  ...settings.currencies.map(currency => ({
+                    value: currency,
+                    label: currency,
+                  }))
+                ]}
                 data={filter['currency']}
                 onChange={value => handlePropsChange('currency', value)}
               />

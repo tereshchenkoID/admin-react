@@ -123,8 +123,8 @@ const Option = ({
                     ) : (
                       <div className={classNames(style.row, style.wide)}>
                         <div className={style.cell}>
-                          <div>{day['date-from']}</div>
-                          <div>{day['date-to']}</div>
+                          <div>{day['date-from'].slice(0, -3)}</div>
+                          <div>{day['date-to'].slice(0, -3)}</div>
                         </div>
                         <div className={style.cell}>
                           {t('no_matching_records_found')}

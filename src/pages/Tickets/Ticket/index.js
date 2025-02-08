@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
@@ -31,6 +31,14 @@ const Ticket = ({ data, action, config_1, config_2, config_3 }) => {
   const [cancel, setCancel] = useState(false)
   const [calculate, setCalculate] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  const risk = useMemo(() => {
+    return Number(data['stake']) * 10 < Number(data['payout'])
+  }, [data])
+
+  const win = useMemo(() => {
+    return Number(data['payout']) > 0
+  }, [data])
 
   const handleDetails = () => {
     if (active) {
@@ -158,9 +166,21 @@ const Ticket = ({ data, action, config_1, config_2, config_3 }) => {
     }
   }
 
+
+  // 0 - no, 1 - yes
+
   return (
-    <div className={style.block}>
-      <div className={classNames(style.row, active && style.active)}>
+    <div
+      className={
+        classNames(
+          style.block,
+          risk && style.highlight,
+          win && style.win,
+          active && style.active
+        )
+      }
+    >
+      <div className={style.row}>
         <div className={style.cell}>
           <Dropdown
             data={active}
@@ -203,14 +223,17 @@ const Ticket = ({ data, action, config_1, config_2, config_3 }) => {
             alt={t('print')}
             action={e => handlePrint(e)}
           />
-          <Calculate
-            data={calculate}
-            active={active}
-            action={handleCalculate}
-            setCalculate={() => {
-              setCalculate(!calculate)
-            }}
-          />
+          {
+            data['calculate'] === '1' &&
+            <Calculate
+              data={calculate}
+              active={active}
+              action={handleCalculate}
+              setCalculate={() => {
+                setCalculate(!calculate)
+              }}
+            />
+          }
         </div>
       </div>
       {active && (

@@ -6,7 +6,7 @@ export const setAgents = () => async dispatch => {
   const { get } = useRequest('tree/')
 
   try {
-    const data = await get()
+    const data = await get()    
 
     dispatch({
       type: types.SET_AGENTS,

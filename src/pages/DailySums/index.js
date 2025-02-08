@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
-import { timeframe } from 'constant/config'
+import { DEFAULT, timeframe } from 'constant/config'
 
 import Debug from 'modules/Debug'
 import Agents from 'modules/Agents'
@@ -98,13 +98,13 @@ const DailyReports = () => {
   const { agents } = useSelector(state => state.agents)
 
   const initialValue = {
-    agent: {
-      id: agents[0].id,
-      username: agents[0].username,
+    'agent': {
+      'id': agents[0].id,
+      'username': agents[0].username,
     },
     'date-from': getDate(new Date().setHours(0, 0, 0, 0), 'datetime-local'),
     'date-to': getDate(new Date(), 'datetime-local'),
-    timeframe: '',
+    'timeframe': DEFAULT,
   }
 
   const [filter, setFilter] = useState(initialValue)
@@ -146,17 +146,20 @@ const DailyReports = () => {
             <div>
               <Select
                 placeholder={t('timeframe')}
-                options={convertOptions(timeframe.TIMEFRAME)}
+                options={[
+                  { value: DEFAULT, label: t('all') },
+                  ...convertOptions(timeframe.TIMEFRAME)
+                ]}
                 data={filter.timeframe}
                 onChange={value => {
                   handlePropsChange('timeframe', value)
                   handlePropsChange(
                     'date-from',
-                    getTimeframeFrom(value, 'datetime-local'),
+                    value === DEFAULT ? initialValue['date-from'] : getTimeframeFrom(value, 'datetime-local'),
                   )
                   handlePropsChange(
                     'date-to',
-                    getTimeframeTo(value, 'datetime-local'),
+                    value === DEFAULT ? initialValue['date-from'] : getTimeframeTo(value, 'datetime-local'),
                   )
                 }}
               />

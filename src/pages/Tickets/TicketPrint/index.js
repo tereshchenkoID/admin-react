@@ -1,7 +1,6 @@
 import { useReactToPrint } from 'react-to-print'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 
 import Barcode from 'react-barcode'
 
@@ -38,7 +37,7 @@ const TicketPrint = ({ data }) => {
       <div className={style.wrapper} ref={componentRef}>
         <div className={style.headline}>
           <div className={style.logo}>
-            <img src="https://api.qool90.bet/img/vb.png" alt="Logo" />
+            <img src={data.print_logo} alt="Logo" />
           </div>
           <div className={style.meta}>
             <div className={style.row}>

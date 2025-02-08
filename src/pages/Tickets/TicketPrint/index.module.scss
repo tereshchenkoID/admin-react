@@ -9,10 +9,12 @@ $color: #000;
 .wrapper {
   @include make-spacer(p, 20px);
 
-  max-width: rem(490px);
+  // max-width: rem(490px);
+  max-width: rem(350px);
   color: $color;
   font-family: Open Sans, sans-serif;
   font-size: rem(12px);
+  line-height: 1.2;
 }
 
 .headline {
@@ -23,24 +25,22 @@ $color: #000;
 }
 
 .logo {
-  @include size(100%, auto);
+  @include size(auto, rem(55px));
 }
 
 .row {
-  @include make-spacer(mb, 5px);
-
   display: grid;
   grid-template-columns: 1fr auto;
+
+  &:not(:last-child) {
+    @include make-spacer(mb, 5px);
+  }
 
   > * {
 
     &:nth-child(2) {
       text-align: right;
     }
-  }
-
-  &:last-child {
-    @include make-spacer(mb, 5px);
   }
 
   &.lg {
@@ -60,12 +60,11 @@ $color: #000;
 }
 
 .body {
-  @include make-spacer(pt, 20px);
-  @include make-spacer(pb, 10px);
+  @include make-spacer(py, 10px);
 }
 
 .title {
-  @include make-spacer(mb, 15px);
+  @include make-spacer(mb, 10px);
 
   text-align: center;
   text-transform: uppercase;
@@ -74,17 +73,18 @@ $color: #000;
 .code {
   @include flex(center, center);
   @include make-spacer(mx, auto);
-  @include make-spacer(mb, 20px);
+  @include make-spacer(mb, 10px);
 
-  height: rem(100px);
+  height: rem(40px);
   text-align: center;
   font-size: rem(20px);
+  overflow: hidden;
 }
 
 .item {
-  @include make-spacer(py, 10px);
+  @include make-spacer(py, 8px);
 
-  border-top: 1px solid $color;
+  border-top: rem(1px) solid $color;
 }
 
 .action {

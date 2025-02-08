@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 
 import { setAuth } from 'store/actions/authAction'
 import { setToastify } from 'store/actions/toastifyAction'
-
 import { postData } from 'helpers/api'
 
 import Field from 'components/Field'
@@ -18,8 +17,11 @@ const Login = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const initialValue = {
-    username: 'admin',
-    password: 'qwe123',
+    // username: 'admin',
+    // password: 'qwe123',
+
+    username: '',
+    password: '',
   }
 
   const [filter, setFilter] = useState(initialValue)

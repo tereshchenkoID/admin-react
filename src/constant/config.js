@@ -16,6 +16,8 @@ export const statuses = {
   },
 }
 
+export const DEFAULT = '-1'
+
 export const types = {
   TYPE: {
     0: 'AGENT',

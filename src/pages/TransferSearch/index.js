@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
-import { types } from 'constant/config'
+import { DEFAULT, types } from 'constant/config'
 
 import { getTimeframeFrom } from 'helpers/getTimeframe'
 import { convertOptions } from 'helpers/convertOptions'
@@ -73,10 +73,10 @@ const TransferSearch = () => {
     },
     'date-from': getTimeframeFrom(3, 'datetime-local'),
     'date-to': getDate(new Date(), 'datetime-local'),
-    types: '',
+    'types': DEFAULT,
     'amount-from': '',
     'amount-to': '',
-    currency: '',
+    'currency': DEFAULT,
   }
   const [filter, setFilter] = useState(initialValue)
   const [cmd, setCmd] = useState(false)
@@ -128,10 +128,13 @@ const TransferSearch = () => {
             <div>
               <Select
                 placeholder={t('currency')}
-                options={settings.currencies.map(currency => ({
-                  value: currency,
-                  label: currency,
-                }))}
+                options={[
+                  { value: DEFAULT, label: t('all') },
+                  ...settings.currencies.map(currency => ({
+                    value: currency,
+                    label: currency,
+                  }))
+                ]}
                 data={filter.currency}
                 onChange={value => handlePropsChange('currency', value)}
               />
@@ -139,7 +142,10 @@ const TransferSearch = () => {
             <div>
               <Select
                 placeholder={t('types')}
-                options={convertOptions(types.AGENT_TRANSFER_TYPE)}
+                options={[
+                  { value: DEFAULT, label: t('all') },
+                  ...convertOptions(types.AGENT_TRANSFER_TYPE)
+                ]}
                 data={filter.currency}
                 onChange={value => handlePropsChange('types', value)}
               />

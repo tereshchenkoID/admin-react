@@ -13,6 +13,7 @@ import Aside from 'components/Aside'
 import Nav from 'components/Nav'
 
 import style from './index.module.scss'
+import { setAuth } from 'store/actions/authAction'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -23,7 +24,11 @@ const Home = () => {
   useEffect(() => {
     dispatch(setSettings())
     dispatch(setAgents()).then(json => {
-      if (json) {
+      if(json.code) {
+        sessionStorage.clear()
+        dispatch(setAuth(null))
+      }
+      else {
         setLoading(false)
         setLoaded(true)
       }
