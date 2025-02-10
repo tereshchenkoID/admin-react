@@ -27,7 +27,7 @@ const Language = () => {
   )
 
   const currentLanguage = useMemo(
-    () => settings.languages.find(lang => lang.code === i18n.language),
+    () => settings?.languages?.find(lang => lang.code === i18n.language) || 'en',
     [settings.languages, i18n.language]
   )
   

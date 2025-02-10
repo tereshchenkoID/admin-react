@@ -1,8 +1,7 @@
 import { useDispatch } from 'react-redux'
+import { router } from 'router'
 import { Suspense, useEffect, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
-
-import { router } from 'router'
 
 import { setSettings } from 'store/actions/settingsAction'
 import { setAgents } from 'store/actions/agentsAction'
@@ -13,7 +12,6 @@ import Aside from 'components/Aside'
 import Nav from 'components/Nav'
 
 import style from './index.module.scss'
-import { setAuth } from 'store/actions/authAction'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -24,11 +22,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(setSettings())
     dispatch(setAgents()).then(json => {
-      if(json.code) {
-        sessionStorage.clear()
-        dispatch(setAuth(null))
-      }
-      else {
+      if(json) {
         setLoading(false)
         setLoaded(true)
       }

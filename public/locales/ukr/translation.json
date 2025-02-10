@@ -198,5 +198,6 @@
   "rtp_control": "RTP control UA",
   "total_stakes": "Total Stakes UA",
   "total_profit": "Total Profit UA",
-  "all": "All UA"
+  "all": "All UA",
+  "teams": "Teams UA"
 }

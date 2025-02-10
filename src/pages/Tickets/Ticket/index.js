@@ -210,14 +210,17 @@ const Ticket = ({ data, action, config_1, config_2, config_3 }) => {
           </div>
         ))}
         <div className={style.cell}>
-          <Cancel
-            data={cancel}
-            action={handleCancelled}
-            alt={t('cancel')}
-            setCancel={() => {
-              setCancel(!cancel)
-            }}
-          />
+          {
+            data['calculate'] === '1' &&
+            <Cancel
+              data={cancel}
+              action={handleCancelled}
+              alt={t('cancel')}
+              setCancel={() => {
+                setCancel(!cancel)
+              }}
+            />
+          }
           <Icon
             icon={'fa-print'}
             alt={t('print')}
@@ -271,6 +274,17 @@ const Ticket = ({ data, action, config_1, config_2, config_3 }) => {
               <div key={idx} className={style.row}>
                 <div className={style.cell}>{el.details.game}</div>
                 <div className={style.cell}>{el.details.eventId}</div>
+                <div className={style.cell}>
+                  {
+                    el.details.teams 
+                    ?
+                      <>
+                        {el.details.teams.home} - {el.details.teams.away}
+                      </>
+                    :
+                      <>-</>
+                  }
+                </div>
                 <div className={style.cell}>{el.market}</div>
                 <div className={style.cell}>{el.selection}</div>
                 <div className={style.cell}>{el.odds}</div>

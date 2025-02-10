@@ -115,15 +115,13 @@ const TransferSearch = () => {
               />
             </div>
             <div>
-              <div>
-                <Agents
-                  data={filter.target}
-                  options={agents}
-                  placeholder={t('target')}
-                  onChange={value => handlePropsChange('target', value)}
-                  full={true}
-                />
-              </div>
+              <Agents
+                data={filter.target}
+                options={agents}
+                placeholder={t('target')}
+                onChange={value => handlePropsChange('target', value)}
+                full={true}
+              />
             </div>
             <div>
               <Select

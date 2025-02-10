@@ -92,6 +92,10 @@ const config_3 = [
     text: 'event',
   },
   {
+    key: 'details.teams',
+    text: 'teams',
+  },
+  {
     key: 'market',
     text: 'type',
   },

@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 
 import classNames from 'classnames'
 
+import { convertFixed } from 'helpers/convertFixed'
+
 import style from './index.module.scss'
 
 const ReadMore = ({ data }) => {
@@ -14,7 +16,7 @@ const ReadMore = ({ data }) => {
       <ul className={style.list}>
         {Object.entries(data).map(([key, value]) => (
           <li key={key}>
-            {key} {value}
+            {key} {convertFixed(value)}
           </li>
         ))}
       </ul>

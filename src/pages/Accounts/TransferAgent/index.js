@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { setToastify } from 'store/actions/toastifyAction'
 import { setAside } from 'store/actions/asideAction'
+import { setAgents } from 'store/actions/agentsAction'
 import { postData } from 'helpers/api'
 
 import Field from 'components/Field'
@@ -58,6 +59,7 @@ const TransferAgent = ({ data }) => {
         ).then(() => {
           handleResetForm()
           dispatch(setAside(null))
+          dispatch(setAgents())
         })
       } else {
         dispatch(

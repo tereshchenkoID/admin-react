@@ -19,7 +19,7 @@ const GeneratePassword = ({
   const generatePassword = () => {
     const newData = data
     const charset =
-      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+'
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
     let newPassword = ''
 
     for (let i = 0; i < 8; i++) {

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-
-import { types } from 'constant/config'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import classNames from 'classnames'
 
+import { types } from 'constant/config'
 import { postData } from 'helpers/api'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Dropdown from 'actions/Dropdown'
 import ReadMore from './ReadMore'

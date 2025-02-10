@@ -26,21 +26,13 @@ const Option = ({ data, option, active, setActive, onChange, full }) => {
             })
           }}
         >
-          {full && (
-            <>
-              {option.shops ? (
-                <FontAwesomeIcon
-                  icon="fa-solid fa-user"
-                  className={style.icon}
-                />
-              ) : (
-                <FontAwesomeIcon
-                  icon="fa-solid fa-shop"
-                  className={style.icon}
-                />
-              )}
-            </>
-          )}
+          {
+            full &&
+            <FontAwesomeIcon
+              icon={`fa-solid ${option.shops ? 'fa-user' : 'fa-shop'}`}
+              className={style.icon}
+            />
+          }
           {option.username}
         </button>
       )}
@@ -120,6 +112,14 @@ const Agents = ({
       let results = []
       for (const client of node.clients) {
         results = results.concat(searchByUsername(client, term))
+      }
+      return results
+    }
+
+    if (full && node.shops) {
+      let results = []
+      for (const shop of node.shops) {
+        results = results.concat(searchByUsername(shop, term))
       }
       return results
     }

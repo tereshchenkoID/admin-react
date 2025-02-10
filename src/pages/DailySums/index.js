@@ -30,66 +30,82 @@ const config_2 = [
   {
     key: 'date-from',
     text: 'date_from',
+    convert: false
   },
   {
     key: 'currency',
     text: 'currency',
+    convert: false
   },
   {
     key: 'tickets',
     text: 'tickets',
+    convert: false
   },
   {
     key: 'total_in',
     text: 'total_in',
+    convert: true
   },
   {
     key: 'total_out',
     text: 'total_out',
+    convert: true
   },
   {
     key: 'open_payouts',
     text: 'open_payouts',
+    convert: true
   },
   {
     key: 'Jackpot_1_payout',
     text: 'jackpot_1_payout',
+    convert: true
   },
   {
     key: 'Jackpot_2_payout',
     text: 'jackpot_2_payout',
+    convert: true
   },
   {
     key: 'Jackpot_3_payout',
     text: 'jackpot_3_payout',
+    convert: true
   },
   {
     key: 'Jackpot_1_contribution',
     text: 'jackpot_1_contribution',
+    convert: true
   },
   {
     key: 'Jackpot_2_contribution',
     text: 'jackpot_2_contribution',
+    convert: true
   },
   {
     key: 'Jackpot_3_contribution',
     text: 'jackpot_3_contribution',
+    convert: true
   },
   {
     key: 'reversal',
     text: 'reversal',
+    convert: true
   },
   {
     key: 'commission',
     text: 'commission',
+    convert: true
   },
   {
     key: 'taxes',
     text: 'taxes',
+    convert: true
   },
   {
     key: 'profit',
     text: 'profit',
+    convert: true
   },
 ]
 

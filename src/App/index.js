@@ -26,7 +26,7 @@ const App = () => {
   return (
     <div className={style.root}>
       <Toastify />
-      {auth || sessionStorage.getItem('authToken') ? <Home /> : <Login />}
+      {auth && sessionStorage.getItem('authToken') ? <Home /> : <Login />}
     </div>
   )
 }

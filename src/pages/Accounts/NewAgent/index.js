@@ -82,6 +82,8 @@ const NewAgent = ({ data }) => {
         return true
       })
 
+      console.log(find)
+
       postData(`new/${data.type.toLowerCase()}/`, formData).then(json => {
         if (json.status === 'OK') {
           dispatch(
@@ -94,6 +96,9 @@ const NewAgent = ({ data }) => {
 
             if (find.length > 0) {
               if (data.type === types.TYPE[0]) {
+                if(!find[0].clients) {
+                  find[0].clients = [];
+                }
                 find[0].clients.push(json.data)
               } else {
                 find[0].shops.push(json.data)

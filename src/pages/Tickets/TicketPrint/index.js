@@ -1,7 +1,6 @@
 import { useReactToPrint } from 'react-to-print'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-
 import Barcode from 'react-barcode'
 
 import classNames from 'classnames'
@@ -15,7 +14,6 @@ import style from './index.module.scss'
 
 const TicketPrint = ({ data }) => {
   const { t } = useTranslation()
-
   const [print, setPrint] = useState(false)
   const componentRef = useRef(null)
   const a = useReactToPrint({
@@ -94,13 +92,15 @@ const TicketPrint = ({ data }) => {
               <div key={idx} className={style.item}>
                 <div className={classNames(style.row, style.lg)}>
                   <strong>{el.details.eventId}</strong>
-                  {el.details.teams ? (
-                    <div>
-                      {el.details.teams.home} - {el.details.teams.away}
-                    </div>
-                  ) : (
-                    <div />
-                  )}
+                  {
+                    el.details.teams 
+                    ?
+                      <div>
+                        {el.details.teams.home} - {el.details.teams.away}
+                      </div>
+                    :
+                      <div />
+                  }
                   <strong>{el.stake}</strong>
                 </div>
                 <div className={classNames(style.row, style.lg)}>
@@ -112,6 +112,12 @@ const TicketPrint = ({ data }) => {
                 </div>
               </div>
             ))}
+            <div className={style.item}>
+              <div className={classNames(style.row, style.sm)}>
+                <div>{t('total_stake')}: </div>
+                <strong>{data.currency} {data.amount}</strong>
+              </div>
+            </div>
           </div>
         </div>
       </div>
