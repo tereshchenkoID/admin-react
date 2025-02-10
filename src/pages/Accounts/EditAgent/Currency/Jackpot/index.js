@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import classNames from 'classnames'
 
+import { postData } from 'hooks/useRequest'
 import { convertOptions } from 'helpers/convertOptions'
 import { setToastify } from 'store/actions/toastifyAction'
-import { postData } from 'helpers/api'
 
 import Button from 'components/Button'
 import Checkbox from 'components/Checkbox'

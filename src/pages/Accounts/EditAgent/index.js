@@ -5,7 +5,7 @@ import classNames from 'classnames'
 
 import { types } from 'constant/config'
 
-import { postData } from 'helpers/api'
+import { postData } from 'hooks/useRequest'
 
 import Checkbox from 'components/Checkbox'
 import Business from './Business'

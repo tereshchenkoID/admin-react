@@ -34,7 +34,13 @@ const Language = () => {
   return (
     <div
       ref={blockRef}
-      className={classNames(style.block, active && style.active)}
+      className={
+        classNames(
+          style.block,
+          settings?.languages?.length <= 1 && style.disabled,
+          active && style.active
+        )
+      }
       onClick={() => {
         setActive(!active)
       }}
@@ -49,7 +55,8 @@ const Language = () => {
           height={15}
         />
       </div>
-      {active && (
+      {
+        active && 
         <div className={style.dropdown}>
           {settings.languages.map(
             (el, idx) =>
@@ -73,7 +80,7 @@ const Language = () => {
               ),
           )}
         </div>
-      )}
+      }
     </div>
   )
 }

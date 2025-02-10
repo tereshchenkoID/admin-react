@@ -76,3 +76,107 @@ hr {
   border: 0;
   background-color: var(--color-border);
 }
+
+:global {
+  // Select
+  .react-select-container {
+    @include size(100%);
+
+    cursor: pointer;
+
+    .react-select {
+
+      &__control {
+        @include make-spacer(pl, 16px);
+
+        height: 100%;
+        border-radius: var(--default-border-radius);
+        box-shadow: none;
+        cursor: pointer;
+        border: rem(1px) solid var(--color-border);
+
+        &:hover {
+          border-color: var(--color-primary);
+        }
+
+        &--is-focused {
+          border-color: var(--color-primary);
+        }
+
+        &--menu-is-open {
+
+          .react-select {
+
+            &__indicator {
+              transform: rotateZ(180deg);
+            }
+          }
+        }
+      }
+
+      &__placeholder {
+        color: var(--color-text);
+      }
+
+      &__value-container {
+        @include make-spacer(p, 0);
+      }
+
+      &__input-container {
+        @include make-spacer(m, 0);
+      }
+
+      &__indicator-separator {
+        display: none;
+      }
+
+      &__indicator {
+        @include transition;
+        @include flex(center, center);
+        @include size(rem(56px), 100%);
+
+        color: var(--color-text)!important;
+      }
+
+      &__clear-indicator {
+        display: none;
+      }
+
+      &__menu {
+        @include make-spacer(my, 0);
+
+        overflow: hidden;
+        border-radius: 0 0 var(--default-border-radius) var(--default-border-radius);
+        border: rem(1px) solid var(--color-border);
+        box-shadow: unset;
+        z-index: $z-index-2;
+      }
+
+      &__menu-list {
+        @include make-spacer(py, 0);
+      }
+
+      &__option {
+        @include make-spacer(py, 6px);
+        @include make-spacer(pl, 16px);
+        @include transition;
+
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--color-primary);
+          color: var(--color-white);
+        }
+
+        &--is-focused {
+          background-color: var(--color-alto-02);
+        }
+
+        &--is-selected {
+          background-color: var(--color-border);
+          color: var(--color-text);
+        }
+      }
+    }
+  }
+}

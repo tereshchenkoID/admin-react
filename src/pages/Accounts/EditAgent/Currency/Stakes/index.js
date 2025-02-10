@@ -4,10 +4,9 @@ import { useDispatch } from 'react-redux'
 
 import { modes } from 'constant/config'
 
+import { postData } from 'hooks/useRequest'
 import { setToastify } from 'store/actions/toastifyAction'
-
 import { convertOptions } from 'helpers/convertOptions'
-import { postData } from 'helpers/api'
 
 import Field from 'components/Field'
 import Button from 'components/Button'

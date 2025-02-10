@@ -1,12 +1,9 @@
-import { useRequest } from 'hooks/useRequest'
-
+import { getData } from 'hooks/useRequest'
 import { types } from 'store/actionTypes'
 
 export const setAgents = () => async dispatch => {
-  const { get } = useRequest('tree/')
-
   try {
-    const data = await get()    
+    const data = await getData('tree/')
 
     dispatch({
       type: types.SET_AGENTS,
@@ -16,6 +13,7 @@ export const setAgents = () => async dispatch => {
     return data
   } catch (e) {
     console.log(e)
+    return null
   }
 }
 

@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { types, service } from 'constant/config'
 
+import { postData } from 'hooks/useRequest'
 import { setToastify } from 'store/actions/toastifyAction'
 import { setAside } from 'store/actions/asideAction'
 import { updateAgents } from 'store/actions/agentsAction'
-import { postData } from 'helpers/api'
 import { searchById } from 'helpers/searchById'
 
 import Field from 'components/Field'

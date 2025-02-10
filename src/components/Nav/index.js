@@ -3,10 +3,9 @@ import { useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useOutsideClick } from 'hooks/useOutsideClick'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import classNames from 'classnames'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Toggle from '../Toggle'
 
@@ -16,7 +15,6 @@ const Nav = () => {
   const { t } = useTranslation()
   const { pathname } = useLocation()
   const { settings } = useSelector(state => state.settings)
-
   const [show, setShow] = useState(false)
   const [active, setActive] = useState(false)
   const menu = [
@@ -105,7 +103,12 @@ const Nav = () => {
               setActive(false)
             }}
           >
-            <img src={settings.logo} alt="logo" />
+            <img 
+              src={settings.logo} 
+              width={42}
+              height={42}
+              alt="logo" 
+            />
           </Link>
         </div>
         <hr />

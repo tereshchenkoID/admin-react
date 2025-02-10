@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import classNames from 'classnames'
 
-import { postData } from 'helpers/api'
+import { postData } from 'hooks/useRequest'
 import { convertFixed } from 'helpers/convertFixed'
 
 import Dropdown from 'actions/Dropdown'

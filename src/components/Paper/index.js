@@ -41,7 +41,6 @@ const Paper = ({
                 />
               )
             }
-
             {
               quantity && (
                 <div className={style.option}>

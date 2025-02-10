@@ -11,32 +11,28 @@ const handleUnauthorized = (response) => {
   return response.data
 }
 
-export const useRequest = (link, data, headers) => {
-  const server = axios.create({
-    baseURL: `${getHostName()}/${link}`,
-    withCredentials: true,
-  })
+const server = axios.create({
+  baseURL: getHostName(),
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
 
-  const get = async url => {
-    try {
-      const response = await server.get(url, { headers })
-      return handleUnauthorized(response)
-    } catch (e) {
-      return e.response || null
-    }
+export const getData = async (url) => {
+  try {
+    const response = await server.get(url)
+    return handleUnauthorized(response)
+  } catch (e) {
+    return { error: true, message: e.message }
   }
+}
 
-  const post = async url => {
-    try {
-      const response = await server.post(url, data, { headers });
-      return handleUnauthorized(response)
-    } catch (e) {
-      return e.response || null
-    }
-  }
-
-  return {
-    get,
-    post,
+export const postData = async (url, data) => {
+  try {
+    const response = await server.post(url, data)
+    return handleUnauthorized(response)
+  } catch (e) {
+    return { error: true, message: e.message }
   }
 }

@@ -17,6 +17,11 @@
       color: var(--color-white);
     }
   }
+
+  &.disabled {
+    user-select: none;
+    pointer-events: none;
+  }
 }
 
 .selected {

@@ -17,9 +17,9 @@ import {
   LineElement,
 } from 'chart.js'
 
+import { postData } from 'hooks/useRequest'
 import { getTimeframeFrom, getTimeframeTo } from 'helpers/getTimeframe'
 import { convertOptions } from 'helpers/convertOptions'
-import { postData } from 'helpers/api'
 import { getDate } from 'helpers/getDate'
 
 import Debug from 'modules/Debug'

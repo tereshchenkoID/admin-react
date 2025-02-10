@@ -6,12 +6,11 @@ import { statuses } from 'constant/config'
 
 import classNames from 'classnames'
 
+import { getData, postData } from 'hooks/useRequest'
 import { setAside } from 'store/actions/asideAction'
 import { setToastify } from 'store/actions/toastifyAction'
-
 import { convertFixed } from 'helpers/convertFixed'
 import { convertOptions } from 'helpers/convertOptions'
-import { getData, postData } from 'helpers/api'
 
 import Textarea from 'components/Textarea'
 import Select from 'components/Select'

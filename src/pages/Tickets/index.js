@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next'
 
 import { DEFAULT, statuses, types } from 'constant/config'
 
+import { postData } from 'hooks/useRequest'
 import { getDate } from 'helpers/getDate'
-import { postData } from 'helpers/api'
 import { convertOptions } from 'helpers/convertOptions'
 
 import Debug from 'modules/Debug'

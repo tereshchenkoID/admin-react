@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 
 import { types } from 'constant/config'
-import { postData } from 'helpers/api'
+import { postData } from 'hooks/useRequest'
 
 import Dropdown from 'actions/Dropdown'
 import ReadMore from './ReadMore'

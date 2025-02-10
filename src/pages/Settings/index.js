@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { postData } from 'hooks/useRequest'
+import { setToastify } from 'store/actions/toastifyAction'
+
 import Debug from 'modules/Debug'
 import GeneratePassword from 'modules/GeneratePassword'
 import Field from 'components/Field'
 import Paper from 'components/Paper'
 import Button from 'components/Button'
 import Password from 'components/Password'
-
-import { setToastify } from 'store/actions/toastifyAction'
-import { postData } from 'helpers/api'
 
 import style from './index.module.scss'
 

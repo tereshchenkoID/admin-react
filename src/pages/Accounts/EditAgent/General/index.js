@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { types, service } from 'constant/config'
 
-import { postData } from 'helpers/api'
+import { postData } from 'hooks/useRequest'
 import { convertOptions } from 'helpers/convertOptions'
 
 import { setToastify } from 'store/actions/toastifyAction'

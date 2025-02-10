@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
+import { postData } from 'hooks/useRequest'
 import { setToastify } from 'store/actions/toastifyAction'
 import { setAside } from 'store/actions/asideAction'
-import { postData } from 'helpers/api'
 
 import GeneratePassword from 'modules/GeneratePassword'
 import Field from 'components/Field'

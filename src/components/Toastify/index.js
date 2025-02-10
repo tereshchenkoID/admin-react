@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.min.css'
 
 const Toastify = () => {
   const { toastify } = useSelector(state => state.toastify)

@@ -5,7 +5,7 @@ import classNames from 'classnames'
 
 import { types } from 'constant/config'
 
-import { postData } from 'helpers/api'
+import { postData } from 'hooks/useRequest'
 import { convertOptions } from 'helpers/convertOptions'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
