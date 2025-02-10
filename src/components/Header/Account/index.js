@@ -39,6 +39,7 @@ const Account = () => {
         type={'button'}
         className={style.toggle}
         onClick={() => setActive(!active)}
+        aria-label={'Toggle'}
       >
         <FontAwesomeIcon icon="fa-solid fa-user" className={style.icon} />
       </button>

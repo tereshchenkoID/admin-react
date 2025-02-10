@@ -28,7 +28,7 @@ const Language = () => {
 
   const currentLanguage = useMemo(
     () => settings?.languages?.find(lang => lang.code === i18n.language) || 'en',
-    [settings.languages, i18n.language]
+    [settings.languages]
   )
   
   return (
@@ -45,6 +45,8 @@ const Language = () => {
           className={style.icon}
           src={`/images/countries/${currentLanguage?.text}.svg`} 
           alt={currentLanguage?.text}
+          width={20}
+          height={15}
         />
       </div>
       {active && (
