@@ -1,4 +1,4 @@
-@import 'scss/config';
+@use 'scss/config' as *;
 
 .root {
   background-color: #fafafa;

@@ -1,4 +1,4 @@
-@import 'scss/config';
+@use 'scss/config' as *;
 
 .main {
   @include make-spacer(p, 24px);
