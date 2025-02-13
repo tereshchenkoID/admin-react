@@ -11,6 +11,8 @@ const Field = ({
   onChange,
   classes = null,
   required = false,
+  min = null,
+  max = null,
 }) => {
   const inputRef = useRef(null)
 
@@ -23,7 +25,7 @@ const Field = ({
       className={classNames(
         style.block,
         style[type],
-        classes && classes.map(el => style[el]),
+        classes && classes.map(el => style[el] || el),
       )}
     >
       <input
@@ -35,6 +37,8 @@ const Field = ({
           onChange(e.currentTarget.value)
         }}
         required={required}
+        min={min}
+        max={max}
       />
       <label className={style.label} onClick={onFocus}>
         {placeholder}

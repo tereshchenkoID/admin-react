@@ -9,6 +9,13 @@
     opacity: 0.5;
     pointer-events: none;
   }
+
+  &:hover {
+
+    .input {
+      border-color: var(--color-primary);
+    }
+  }
 }
 
 .label {
@@ -54,7 +61,11 @@
   font-weight: var(--typography-thin);
 
   &:focus {
-    outline: 0;
     border-color: var(--color-primary);
+  }
+
+  &:is(:-webkit-autofill, :autofill) {
+    -webkit-box-shadow: 0 0 0 30px var(--color-white) inset !important;
+    color: var(--color-text) !important;
   }
 }

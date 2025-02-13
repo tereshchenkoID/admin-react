@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
 import classNames from 'classnames'
 
@@ -13,6 +14,7 @@ import Currency from './Currency'
 import General from './General'
 import Shop from './Shop'
 import Logo from './Logo'
+import Skin from './Skin'
 
 import style from './index.module.scss'
 
@@ -25,8 +27,10 @@ const getContent = (active, data, inherit, setUpdate) => {
     case 2:
       return <Logo data={data} inherit={inherit} setUpdate={setUpdate} />
     case 3:
-      return <Currency data={data} inherit={inherit} setUpdate={setUpdate} />
+      return <Skin data={data} inherit={inherit} setUpdate={setUpdate} />
     case 4:
+      return <Currency data={data} inherit={inherit} setUpdate={setUpdate} />
+    case 5:
       return <Business data={data} inherit={inherit} setUpdate={setUpdate} />
     default:
       return null
@@ -35,11 +39,13 @@ const getContent = (active, data, inherit, setUpdate) => {
 
 const EditAgent = ({ data }) => {
   const { t } = useTranslation()
+  const { auth } = useSelector(state => state.auth)
   const [active, setActive] = useState(0)
   const [info, setInfo] = useState(null)
   const [loading, setLoading] = useState(true)
   const [inherit, setInherit] = useState()
   const [update, setUpdate] = useState(true)
+  const isAdmin = auth.type === types.ACCOUNT_TYPE.Admin
 
   const handleSubmit = () => {
     const formData = new FormData()
@@ -87,20 +93,32 @@ const EditAgent = ({ data }) => {
         >
           {t('logo')}
         </button>
+        {
+          isAdmin &&
+          <button
+            className={classNames(style.link, active === 3 && style.active)}
+            onClick={() => setActive(3)}
+          >
+            {t('skin')}
+          </button>
+        }
         {data.type !== types.TYPE[1] && (
           <>
-            <button
-              className={classNames(style.link, active === 3 && style.active)}
-              onClick={() => setActive(3)}
-            >
-              {t('currency')}
-            </button>
             <button
               className={classNames(style.link, active === 4 && style.active)}
               onClick={() => setActive(4)}
             >
-              {t('business')}
+              {t('currency')}
             </button>
+            {
+              isAdmin &&
+              <button
+                className={classNames(style.link, active === 5 && style.active)}
+                onClick={() => setActive(5)}
+              >
+                {t('business')}
+              </button>
+            }
           </>
         )}
       </div>

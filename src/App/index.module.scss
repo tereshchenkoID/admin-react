@@ -24,21 +24,15 @@ input {
 button,
 a {
   @include transition(all);
-}
 
+  color: var(--color-text);
+}
 
 button {
   @include reset-button;
 }
 
-button,
-a,
-.a {
-  @include transition(all);
-}
-
-a,
-.a {
+a{
   cursor: pointer;
   text-decoration: none;
   color: inherit;

@@ -8,14 +8,14 @@ import { postData } from 'hooks/useRequest'
 import { getDate } from 'helpers/getDate'
 import { convertOptions } from 'helpers/convertOptions'
 
-import Debug from 'modules/Debug'
-import Pagination from 'modules/Pagination'
-import Agents from 'modules/Agents'
 import Paper from 'components/Paper'
 import Field from 'components/Field'
 import Select from 'components/Select'
 import Button from 'components/Button'
 import Loader from 'components/Loader'
+import Debug from 'modules/Debug'
+import Agents from 'modules/Agents'
+import Pagination from 'modules/Pagination'
 import Ticket from './Ticket'
 
 import style from './index.module.scss'
@@ -118,8 +118,9 @@ const config_3 = [
 ]
 
 const Tickets = () => {
+  const { t } = useTranslation()
   const { agents } = useSelector(state => state.agents)
-  
+  const { settings } = useSelector(state => state.settings)
   const initialValue = {
     'agent': {
       'id': agents[0].id,
@@ -137,9 +138,7 @@ const Tickets = () => {
     'payout-from': '',
     'payout-to': ''
   }
-  const { t } = useTranslation()
 
-  const { settings } = useSelector(state => state.settings)
   const [filter, setFilter] = useState(initialValue)
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null)
@@ -164,6 +163,7 @@ const Tickets = () => {
 
   const handleResetForm = () => {
     setFilter(initialValue)
+    handleSubmit(null, 0, initialValue)
   }
 
   const handlePropsChange = (fieldName, fieldValue) => {
@@ -180,16 +180,16 @@ const Tickets = () => {
     }))
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = (event, page = 0, filters = filter) => {
     event && event.preventDefault()
     setLoading(true)
 
     const formData = new FormData()
-    formData.append('page', pagination.page)
+    formData.append('page', page)
     formData.append('quantity', pagination.quantity)
-    formData.append('id', filter.agent.id)
+    formData.append('id', filters.agent.id)
 
-    Object.entries(filter).map(([key, value]) => {
+    Object.entries(filters).map(([key, value]) => {
       if(key !== 'agent') {
         formData.append(key, value)
         return true
@@ -211,32 +211,29 @@ const Tickets = () => {
   }
 
   const nextHandleSubmit = () => {
-    const next =
-      pagination.page < pagination.pages
-        ? pagination.page + 1
-        : pagination.pages
+    const next = pagination.page < pagination.pages ? pagination.page + 1 : pagination.pages
     handlePagination('page', next)
-    handleSubmit(null)
+    handleSubmit(null, next)
   }
 
   const prevHandleSubmit = () => {
     const prev = pagination.page > 0 ? pagination.page - 1 : 0
     handlePagination('page', prev)
-    handleSubmit(null)
+    handleSubmit(null, prev)
   }
 
   const startHandlerSubmit = () => {
     handlePagination('page', 0)
-    handleSubmit(null)
+    handleSubmit(null, 0)
   }
 
   const endHandlerSubmit = () => {
     handlePagination('page', pagination.pages)
-    handleSubmit(null)
+    handleSubmit(null, pagination.pages)
   }
 
   useEffect(() => {
-    handleSubmit(null)
+    handleSubmit(null, 0)
   }, [])
 
   return loading ? (
@@ -250,7 +247,6 @@ const Tickets = () => {
         classes={['sm']}
       >
         <Debug data={filter} />
-
         <form onSubmit={handleSubmit}>
           <div className={style.grid}>
             <div>

@@ -100,7 +100,7 @@ const Nav = () => {
             rel="noreferrer"
             onClick={() => {
               setShow(false)
-              setActive(false)
+              // setActive(false)
             }}
           >
             <img 
@@ -119,11 +119,11 @@ const Nav = () => {
               className={classNames(style.item, idx === active && style.active)}
             >
               <span
+                className={style.link}
                 onClick={() => {
                   setActive(idx)
                   setShow(true)
                 }}
-                className={style.link}
               >
                 <FontAwesomeIcon icon={el.icon} className={style.icon} />
                 <span>{t(el.text)}</span>
@@ -145,10 +145,6 @@ const Nav = () => {
                         style.link,
                         pathname === el_s.link && style.active,
                       )}
-                      onClick={() => {
-                        setShow(false)
-                        setActive(false)
-                      }}
                     >
                       <i className={style.icon} />
                       <span>{t(el_s.text)}</span>

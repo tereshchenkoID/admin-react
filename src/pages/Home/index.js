@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux'
-import { router } from 'router'
-import { Suspense, useEffect, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useLocation, Outlet } from 'react-router-dom'
 
 import { setSettings } from 'store/actions/settingsAction'
 import { setAgents } from 'store/actions/agentsAction'
@@ -15,7 +14,7 @@ import style from './index.module.scss'
 
 const Home = () => {
   const dispatch = useDispatch()
-  const location = useLocation()
+  const { pathname } = useLocation()
   const [loading, setLoading] = useState(true)
   const [loaded, setLoaded] = useState(false)
 
@@ -27,7 +26,7 @@ const Home = () => {
         setLoaded(true)
       }
     })
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     if (!loaded)
@@ -39,7 +38,7 @@ const Home = () => {
     }, 500)
 
     return () => clearTimeout(timer)
-  }, [location.pathname])
+  }, [pathname])
 
   return loading ? (
     <Loader />
@@ -49,19 +48,7 @@ const Home = () => {
       <Nav />
       <Aside />
       <main className={style.main}>
-        {
-          <Suspense fallback={<Loader />}>
-            <Routes>
-              {router.map(item => (
-                <Route
-                  key={new Date().getTime()}
-                  path={item.path}
-                  element={item.element}
-                />
-              ))}
-            </Routes>
-          </Suspense>
-        }
+        <Outlet />
       </main>
     </>
   )

@@ -13,6 +13,13 @@
       border-color: var(--color-primary);
     }
   }
+
+  &:hover {
+
+    .selected {
+      border-color: var(--color-primary);
+    }
+  }
 }
 
 .selected {

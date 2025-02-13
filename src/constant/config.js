@@ -19,6 +19,11 @@ export const statuses = {
 export const DEFAULT = '-1'
 
 export const types = {
+  ACCOUNT_TYPE : {
+    'Admin': 1,
+    'Manager': 2
+  },
+
   TYPE: {
     0: 'AGENT',
     1: 'SHOP',

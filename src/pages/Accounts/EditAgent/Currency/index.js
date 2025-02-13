@@ -4,16 +4,20 @@ import { useSelector } from 'react-redux'
 
 import classNames from 'classnames'
 
+import { types } from 'constant/config'
+
 import Stakes from './Stakes'
 import Jackpot from './Jackpot'
 
 import style from './index.module.scss'
 
-const Currency = ({ data, inherit, setUpdate }) => {
+const Currency = ({ data, inherit }) => {
   const { t } = useTranslation()
+  const { auth } = useSelector(state => state.auth)
   const { settings } = useSelector(state => state.settings)
   const [active, setActive] = useState(settings.currencies[0])
   const [tab, setTab] = useState(0)
+  const isAdmin = auth.type === types.ACCOUNT_TYPE.Admin
 
   return (
     <div className={style.block}>
@@ -40,13 +44,16 @@ const Currency = ({ data, inherit, setUpdate }) => {
         >
           {t('stakes')}
         </button>
-        <button
-          type={'button'}
-          className={classNames(style.link, tab === 1 && style.active)}
-          onClick={() => setTab(1)}
-        >
-          {t('jackpots')}
-        </button>
+        {
+          isAdmin &&
+          <button
+            type={'button'}
+            className={classNames(style.link, tab === 1 && style.active)}
+            onClick={() => setTab(1)}
+          >
+            {t('jackpots')}
+          </button>
+        }
       </div>
       <div>
         {tab === 0 && (
