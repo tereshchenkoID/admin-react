@@ -27,10 +27,12 @@ const Password = ({
 
   return (
     <div
-      className={classNames(
-        style.block,
-        classes && classes.map(el => style[el]),
-      )}
+      className={
+        classNames(
+          style.block,
+          classes && classes.map(el => style[el]),
+        )
+      }
     >
       <input
         ref={inputRef}
@@ -48,9 +50,10 @@ const Password = ({
       </label>
 
       <button
-        onClick={() => setShow(!show)}
-        className={style.eye}
         type={'button'}
+        className={style.eye}
+        onClick={() => setShow(!show)}
+        aria-label={'Toggle field'}
       >
         {show ? (
           <FontAwesomeIcon icon="fa-solid fa-eye" />

@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useOutsideClick } from 'hooks/useOutsideClick'
 
 import classNames from 'classnames'
 
-import { useOutsideClick } from 'hooks/useOutsideClick'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import style from './index.module.scss'
@@ -101,10 +101,7 @@ const Agents = ({
   )
 
   const searchByUsername = (node, term) => {
-    if (
-      node.username &&
-      node.username.toLowerCase().indexOf(term.toLowerCase()) !== -1
-    ) {
+    if (node.username && node.username.toLowerCase().indexOf(term.toLowerCase()) !== -1) {
       return [node]
     }
 

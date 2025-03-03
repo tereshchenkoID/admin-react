@@ -23,10 +23,12 @@ const Paper = ({
 
   return (
     <div
-      className={classNames(
-        style.block,
-        classes && classes.map(el => style[el]),
-      )}
+      className={
+        classNames(
+          style.block,
+          classes && classes.map(el => style[el]),
+        )
+      }
     >
       {headline && (
         <>
@@ -37,7 +39,7 @@ const Paper = ({
                 <Icon
                   icon={'fa-times'}
                   action={() => dispatch(setAside(null))}
-                  alt={'close'}
+                  alt={'Close'}
                 />
               )
             }

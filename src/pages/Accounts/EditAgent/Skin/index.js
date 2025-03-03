@@ -27,7 +27,7 @@ const Skin = ({ data, inherit, setUpdate }) => {
       prevFilter.map((item, i) =>
         i === index ? { ...item, value: value } : item
       )
-    );
+    )
   }
 
   const handleResetForm = () => {
@@ -97,28 +97,17 @@ const Skin = ({ data, inherit, setUpdate }) => {
     <>
       <Debug data={filter} />
       <div className={style.tab}>
-        <button
-          type={'button'}
-          className={classNames(style.link, tab === 0 && style.active)}
-          aria-label={'Create'}
-          onClick={() => {
-            setTab(0)
-            setFilter(data.skin[0])
-          }}
-        >
-          {t('create')}
-        </button>
-        <button
-          type={'button'}
-          className={classNames(style.link, tab === 1 && style.active)}
-          aria-label={'Update'}
-          onClick={() => {
-            setTab(1)
-            setFilter(data.skin[1])
-          }}
-        >
-          {t('update')}
-        </button>
+        {['create', 'update'].map((label, index) => (
+          <button
+            key={index}
+            type="button"
+            className={classNames(style.link, tab === index && style.active)}
+            aria-label={t(label)}
+            onClick={() => setTab(index)}
+          >
+            {t(label)}
+          </button>
+        ))}
       </div>
 
       <form className={style.block} onSubmit={handleSubmit}>
@@ -148,7 +137,7 @@ const Skin = ({ data, inherit, setUpdate }) => {
           <Button 
             type={'submit'} 
             classes={'primary'} 
-            placeholder={tab === 0 ? t('save') : t('update')} 
+            placeholder={t(tab === 0 ? 'save' : 'update')}
           />
           <Button
             type={'reset'}

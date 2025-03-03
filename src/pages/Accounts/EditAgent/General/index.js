@@ -6,7 +6,6 @@ import { types, service } from 'constant/config'
 
 import { postData } from 'hooks/useRequest'
 import { convertOptions } from 'helpers/convertOptions'
-
 import { setToastify } from 'store/actions/toastifyAction'
 import { setAgents } from 'store/actions/agentsAction'
 
@@ -19,9 +18,9 @@ import Debug from 'modules/Debug'
 import style from './index.module.scss'
 
 const General = ({ data, inherit, setUpdate }) => {
+  const dispatch = useDispatch()
   const { t } = useTranslation()
   const { settings } = useSelector(state => state.settings)
-  const dispatch = useDispatch()
   const [filter, setFilter] = useState({
     inherit: inherit,
     ...data.general

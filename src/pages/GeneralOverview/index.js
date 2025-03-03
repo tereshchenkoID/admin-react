@@ -134,6 +134,8 @@ const GeneralOverview = () => {
   }
 
   const handlePropsChange = (fieldName, fieldValue) => {
+    console.log(fieldValue)
+
     setFilter(prevData => ({
       ...prevData,
       [fieldName]: fieldValue,

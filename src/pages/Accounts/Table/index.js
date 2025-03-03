@@ -160,7 +160,7 @@ const Option = ({ t, data, filter, config_1, config_2 }) => {
                   />
                 )}
               </div>
-              {config_2.map((key, value) => (
+              {config_2.map((_, value) => (
                 <div key={value} className={style.cell}>
                   <FontAwesomeIcon
                     icon="fa-solid fa-shop"

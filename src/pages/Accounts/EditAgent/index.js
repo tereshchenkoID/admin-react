@@ -87,37 +87,36 @@ const EditAgent = ({ data }) => {
         >
           {t('shop')}
         </button>
-        <button
-          className={classNames(style.link, active === 2 && style.active)}
-          onClick={() => setActive(2)}
-        >
-          {t('logo')}
-        </button>
-        {
-          isAdmin &&
-          <button
-            className={classNames(style.link, active === 3 && style.active)}
-            onClick={() => setActive(3)}
-          >
-            {t('skin')}
-          </button>
-        }
         {data.type !== types.TYPE[1] && (
           <>
             <button
-              className={classNames(style.link, active === 4 && style.active)}
-              onClick={() => setActive(4)}
+              className={classNames(style.link, active === 2 && style.active)}
+              onClick={() => setActive(2)}
             >
-              {t('currency')}
+              {t('logo')}
             </button>
             {
               isAdmin &&
-              <button
-                className={classNames(style.link, active === 5 && style.active)}
-                onClick={() => setActive(5)}
-              >
-                {t('business')}
-              </button>
+              <>
+                <button
+                  className={classNames(style.link, active === 3 && style.active)}
+                  onClick={() => setActive(3)}
+                >
+                  {t('skin')}
+                </button>
+                <button
+                  className={classNames(style.link, active === 4 && style.active)}
+                  onClick={() => setActive(4)}
+                >
+                  {t('currency')}
+                </button>
+                <button
+                  className={classNames(style.link, active === 5 && style.active)}
+                  onClick={() => setActive(5)}
+                >
+                  {t('business')}
+                </button>
+              </>
             }
           </>
         )}
