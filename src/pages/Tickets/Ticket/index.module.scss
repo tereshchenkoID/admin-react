@@ -43,6 +43,8 @@
 .cell {
   @include flex(null, center, null, wrap);
   @include make-spacer(p, 12px);
+
+  overflow-wrap: anywhere;
 }
 
 .dropdown {
@@ -78,7 +80,7 @@
   &.lg {
 
     .row {
-      grid-template-columns: 1.5fr repeat(4, 1fr) rem(150px) 2fr rem(200px);
+      grid-template-columns: 1.5fr repeat(2, 1fr) 1.5fr 1fr rem(150px) 1.5fr rem(160px);
     }
   }
 }

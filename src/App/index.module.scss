@@ -118,6 +118,8 @@ hr {
 
       &__input-container {
         @include make-spacer(m, 0);
+
+        flex-grow: 1;
       }
 
       &__indicator-separator {
@@ -127,7 +129,7 @@ hr {
       &__indicator {
         @include transition;
         @include flex(center, center);
-        @include size(rem(56px), 100%);
+        @include size(var(--select-height), 100%);
 
         color: var(--color-text)!important;
       }

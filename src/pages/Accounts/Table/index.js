@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-
-import { types, service } from 'constant/config'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import classNames from 'classnames'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import { types, service } from 'constant/config'
 import { setAside } from 'store/actions/asideAction'
 
 import Icon from 'components/Icon'

@@ -165,9 +165,6 @@ const Ticket = ({ data, action, config_1, config_2, config_3 }) => {
     }
   }
 
-
-  // 0 - no, 1 - yes
-
   return (
     <div
       className={

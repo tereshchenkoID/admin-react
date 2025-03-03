@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import classNames from 'classnames'
 
+import { types } from 'constant/config'
 import { postData } from 'hooks/useRequest'
 import { convertFixed } from 'helpers/convertFixed'
 
@@ -19,6 +21,7 @@ const Option = ({
   config_2,
   cmd,
   setCmd,
+  type
 }) => {
   const [table, setTable] = useState(null)
   const [active, setActive] = useState(false)
@@ -76,6 +79,10 @@ const Option = ({
           />
         </div>
         <div className={style.cell}>
+          <FontAwesomeIcon
+            icon={`fa-solid fa-${type === types.TYPE[0] ? 'user' : 'shop'}`}
+            className={style.icon}
+          />
           {data.username || filter.agent.username}
         </div>
       </div>
@@ -156,6 +163,20 @@ const Option = ({
                 setCmd={setCmd}
               />
             ))}
+          {data.shops &&
+            data.shops.map((el, idx) => (
+              <Option
+                key={idx}
+                t={t}
+                data={el}
+                filter={filter}
+                handlePropsChange={handlePropsChange}
+                config={config}
+                config_2={config_2}
+                cmd={cmd}
+                setCmd={setCmd}
+              />
+            ))}  
         </div>
       )}
     </>
@@ -185,6 +206,7 @@ const Table = ({ data, filter, config_1, config_2, cmd, setCmd }) => {
           filter={filter}
           cmd={cmd}
           setCmd={setCmd}
+          type={types.TYPE[0]}
         />
       ))}
     </div>

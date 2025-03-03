@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import classNames from 'classnames'
 
+import { types } from 'constant/config'
 import { postData } from 'hooks/useRequest'
 import { convertFixed } from 'helpers/convertFixed'
 
@@ -19,6 +21,7 @@ const Option = ({
   config_2,
   cmd,
   setCmd,
+  type,
 }) => {
   const [table, setTable] = useState(null)
   const [active, setActive] = useState(false)
@@ -76,6 +79,10 @@ const Option = ({
           />
         </div>
         <div className={style.cell}>
+          <FontAwesomeIcon
+            icon={`fa-solid fa-${type === types.TYPE[0] ? 'user' : 'shop'}`}
+            className={style.icon}
+          />
           {data.username || filter.agent.username}
         </div>
       </div>
@@ -85,7 +92,10 @@ const Option = ({
             <div className={style.table}>
               <div className={classNames(style.row, style.lg, style.headline)}>
                 {config_2.map((el, idx) => (
-                  <div key={idx} className={style.cell}>
+                  <div
+                    key={idx}
+                    className={style.cell}
+                  >
                     {t(el.text)}
                   </div>
                 ))}
@@ -94,8 +104,8 @@ const Option = ({
                 table.days?.map((day, days_idx) => (
                   <React.Fragment key={days_idx}>
                     {
-                      day.report.length > 0 
-                      ? 
+                      day.report.length > 0
+                        ?
                         day.report.map((report, report_idx) => (
                           <div
                             key={report_idx}
@@ -103,34 +113,34 @@ const Option = ({
                           >
                             {
                               config_2.map((key, value_idx) => (
-                                <div 
-                                  key={value_idx} 
+                                <div
+                                  key={value_idx}
                                   className={style.cell}
                                 >
                                   {
-                                    key.key === 'date-from' 
-                                    ?
-                                      report_idx === 0 
+                                    key.key === 'date-from'
+                                      ?
+                                      report_idx === 0
                                         ?
-                                          <>
-                                            <div>{day['date-from']}</div>
-                                            <div>{day['date-to']}</div>
-                                          </>
+                                        <>
+                                          <div>{day['date-from']}</div>
+                                          <div>{day['date-to']}</div>
+                                        </>
                                         :
-                                          ''
-                                    : 
-                                      key.convert 
-                                        ? 
-                                          convertFixed(report[key.key]) 
-                                        : 
-                                          report[key.key]
+                                        ''
+                                      :
+                                      key.convert
+                                        ?
+                                        convertFixed(report[key.key])
+                                        :
+                                        report[key.key]
                                   }
                                 </div>
                               ))
                             }
                           </div>
                         ))
-                      :
+                        :
                         <div className={classNames(style.row, style.wide)}>
                           <div className={style.cell}>
                             <div>{day['date-from'].slice(0, -3)}</div>
@@ -157,6 +167,22 @@ const Option = ({
                 config_2={config_2}
                 cmd={cmd}
                 setCmd={setCmd}
+                type={types.TYPE[0]}
+              />
+            ))}
+          {data.shops &&
+            data.shops.map((el, idx) => (
+              <Option
+                key={idx}
+                t={t}
+                data={el}
+                filter={filter}
+                handlePropsChange={handlePropsChange}
+                config={config}
+                config_2={config_2}
+                cmd={cmd}
+                setCmd={setCmd}
+                type={types.TYPE[1]}
               />
             ))}
         </div>
@@ -188,6 +214,7 @@ const Table = ({ data, filter, config_1, config_2, cmd, setCmd }) => {
           filter={filter}
           cmd={cmd}
           setCmd={setCmd}
+          type={types.TYPE[0]}
         />
       ))}
     </div>

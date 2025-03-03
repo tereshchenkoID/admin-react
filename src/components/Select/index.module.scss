@@ -1,13 +1,23 @@
 @use 'scss/config' as *;
 
 .block {
-  @include size(100%, rem(56px));
+  --select-height: 56px;
+
+  @include size(100%, var(--select-height));
 
   position: relative;
 
   &.disabled {
     opacity: 0.5;
     pointer-events: none;
+  }
+
+  &.sm {
+    --select-height: 46px;
+  }
+
+  &.md {
+    --select-height: 52px;
   }
 }
 
