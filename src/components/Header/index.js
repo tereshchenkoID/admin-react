@@ -1,3 +1,5 @@
+import React from 'react'
+
 import Clock from './Clock'
 import Language from './Language'
 

@@ -1,5 +1,5 @@
+import React, { useEffect, useRef, useState } from 'react'
 import { useReactToPrint } from 'react-to-print'
-import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Barcode from 'react-barcode'
 

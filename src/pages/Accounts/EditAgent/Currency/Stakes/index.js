@@ -105,7 +105,7 @@ const Stakes = ({ data, currency, inherit }) => {
     <>
       <Debug data={filter} />
       <form className={style.block} onSubmit={handleSubmit}>
-        {Object.entries(filter).map(([key, value]) => (
+        {Object.entries(filter).map(([key]) => (
           <div key={key} className={style.group}>
             <h6>{t(key)}</h6>
             {Object.entries(filter[key]).map(([key_g, value_g]) => (

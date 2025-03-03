@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { useOutsideClick } from 'hooks/useOutsideClick'
 import { SketchPicker } from 'react-color'
 

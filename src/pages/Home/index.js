@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
 import { useLocation, Outlet } from 'react-router-dom'
 
 import { setSettings } from 'store/actions/settingsAction'

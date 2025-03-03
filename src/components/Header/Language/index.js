@@ -1,4 +1,4 @@
-import { useRef, useMemo, useState } from 'react'
+import React, { useRef, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import i18n from 'i18next'
 

@@ -1,5 +1,5 @@
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'

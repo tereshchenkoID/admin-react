@@ -1,5 +1,5 @@
+import React, { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useEffect, useRef } from 'react'
 import Select from 'react-select'
 
 import classNames from 'classnames'

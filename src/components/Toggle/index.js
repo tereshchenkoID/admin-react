@@ -1,6 +1,8 @@
-import styles from './index.module.scss'
+import React from 'react'
 
 import classNames from 'classnames'
+
+import styles from './index.module.scss'
 
 const Toggle = ({ active, action }) => {
   return (
