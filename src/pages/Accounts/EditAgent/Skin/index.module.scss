@@ -12,6 +12,17 @@
   position: relative;
 }
 
+.head {
+  display: grid;
+  grid-template-columns: 1fr rem(56px);
+  column-gap: rem(16px);
+}
+
+.remove {
+  @include size(100%);
+
+  border-radius: var(--default-border-radius);
+}
 
 .tab {
   @include flex(null, center);
@@ -41,6 +52,10 @@
     content: '';
   }
 
+  &.active {
+    pointer-events: none;
+  }
+
   &.active,
   &:hover {
 
@@ -53,4 +68,29 @@
     color: var(--color-primary);
     pointer-events: none;
   }
+}
+
+.modal {
+  @include flex(center, center, column);
+
+  position: fixed;
+  inset: 0;
+  z-index: $z-index-13;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.wrapper {
+  @include flex(center, center, column);
+  @include make-spacer(p, 16px);
+
+  border-radius: var(--default-border-radius);
+  box-shadow: var(--default-box-shadow);
+  background-color: var(--color-white);
+  gap: rem(16px);
+}
+
+.action {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: rem(16px);
 }

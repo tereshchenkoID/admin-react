@@ -24,4 +24,22 @@
     opacity: 0.6;
     pointer-events: none;
   }
+
+  &.primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+
+    &:hover {
+      color: var(--color-white);
+    }
+  }
+
+  &.warning {
+    background-color: var(--color-warning);
+    color: var(--color-white);
+
+    &:hover {
+      color: var(--color-white);
+    }
+  }
 }

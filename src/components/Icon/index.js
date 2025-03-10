@@ -5,12 +5,19 @@ import classNames from 'classnames'
 
 import style from './index.module.scss'
 
-const Icon = ({ icon, action, disabled = false, alt }) => {
+const Icon = ({ icon, action, disabled = false, alt, classes = null }) => {
   const { t } = useTranslation()
 
   return (
     <button
-      className={classNames(style.block, disabled && style.disabled)}
+      type={'button'}
+      className={
+        classNames(
+          style.block, 
+          disabled && style.disabled,
+          classes && classes.map(el => style[el] || el),
+        )
+      }
       onClick={action}
       title={t(alt || 'add')}
     >

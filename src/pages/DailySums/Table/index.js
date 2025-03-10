@@ -161,6 +161,7 @@ const Option = ({
                 config_2={config_2}
                 cmd={cmd}
                 setCmd={setCmd}
+                type={types.TYPE[0]}
               />
             ))}
           {data.shops &&
@@ -175,6 +176,7 @@ const Option = ({
                 config_2={config_2}
                 cmd={cmd}
                 setCmd={setCmd}
+                type={types.TYPE[1]}
               />
             ))}  
         </div>
