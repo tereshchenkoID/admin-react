@@ -57,7 +57,7 @@
   "bet_time": "Bet Time UA",
   "bet": "Bet UA",
   "time": "Time UA",
-  "daily_overview_report": "Daily Overview report UA",
+  "daily_overview_report": "Daily overview report UA",
   "date": "Date UA",
   "ticketsCount": "Tickets Count UA",
   "total_in": "Total In UA",
@@ -201,6 +201,7 @@
   "rtp_control": "RTP control UA",
   "total_stakes": "Total Stakes UA",
   "total_profit": "Total Profit UA",
+  "profit_usd": "Profit USD UA",
   "all": "All UA",
   "teams": "Teams UA"
 }

@@ -126,7 +126,16 @@ const Option = ({
                                       : 
                                         key.convert 
                                           ?
-                                            convertFixed(report[key.key])
+                                            <span
+                                              className={
+                                                classNames(
+                                                  style.label,
+                                                  report[key.key] < 0 && style.lower
+                                                )
+                                              }
+                                            >
+                                              {convertFixed(report[key.key])}
+                                            </span>
                                           :
                                             report[key.key]
                                   }

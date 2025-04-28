@@ -107,6 +107,11 @@ const config_2 = [
     text: 'profit',
     convert: true
   },
+  {
+    key: 'profit_usd',
+    text: 'profit_usd',
+    convert: true
+  }
 ]
 
 const GeneralOverview = () => {
@@ -133,9 +138,9 @@ const GeneralOverview = () => {
     setCmd('reset')
   }
 
-  const handlePropsChange = (fieldName, fieldValue) => {
-    console.log(fieldValue)
 
+
+  const handlePropsChange = (fieldName, fieldValue) => {
     setFilter(prevData => ({
       ...prevData,
       [fieldName]: fieldValue,

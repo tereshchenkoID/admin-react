@@ -57,7 +57,7 @@
   "bet_time": "Bet Time",
   "bet": "Bet",
   "time": "Time",
-  "daily_overview_report": "Daily Overview report",
+  "daily_overview_report": "Daily overview report",
   "date": "Date",
   "ticketsCount": "Tickets Count",
   "total_in": "Total In",
@@ -201,6 +201,7 @@
   "rtp_control": "RTP control",
   "total_stakes": "Total Stakes",
   "total_profit": "Total Profit",
+  "profit_usd": "Profit USD",
   "all": "All",
   "teams": "Teams"
 }

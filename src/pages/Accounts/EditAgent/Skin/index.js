@@ -50,19 +50,19 @@ const Skin = ({ data, inherit, setUpdate }) => {
 
     postData('accounts/edit/skin/', formData).then(json => {
       if (json.code === '0') {
-        if(tab === 0) {
-          dispatch(setSettings())
-        }
-
         dispatch(
           setToastify({
             type: 'success',
             text: json.message,
           }),
         )
-        setUpdate(true)
-        setFilter(data.skin[tab])
-        handleLoadSkin(data.skin[tab].id)
+        
+        if(tab === 0) {
+          dispatch(setSettings())
+          setUpdate(true)
+          setFilter(data.skin[tab])
+          handleLoadSkin(data.skin[tab].id)
+        }
       } else {
         dispatch(
           setToastify({

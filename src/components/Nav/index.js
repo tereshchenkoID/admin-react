@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useOutsideClick } from 'hooks/useOutsideClick'
@@ -7,12 +7,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import classNames from 'classnames'
 
+import { setAside } from 'store/actions/asideAction'
+
 import Toggle from '../Toggle'
 
 import style from './index.module.scss'
 
 const Nav = () => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const { pathname } = useLocation()
   const { settings } = useSelector(state => state.settings)
   const [show, setShow] = useState(false)
@@ -100,6 +103,7 @@ const Nav = () => {
             rel="noreferrer"
             onClick={() => {
               setShow(false)
+              dispatch(setAside(null))
               // setActive(false)
             }}
           >
@@ -123,6 +127,7 @@ const Nav = () => {
                 onClick={() => {
                   setActive(idx)
                   setShow(true)
+                  dispatch(setAside(null))
                 }}
               >
                 <FontAwesomeIcon icon={el.icon} className={style.icon} />
@@ -145,6 +150,7 @@ const Nav = () => {
                         style.link,
                         pathname === el_s.link && style.active,
                       )}
+                      onClick={() => dispatch(setAside(null))}
                     >
                       <i className={style.icon} />
                       <span>{t(el_s.text)}</span>

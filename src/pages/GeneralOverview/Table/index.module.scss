@@ -62,7 +62,7 @@
   }
 
   &.lg {
-    grid-template-columns: 1fr rem(180px) repeat(14, 1fr);
+    grid-template-columns: 1fr rem(180px) repeat(15, 1fr);
     width: fit-content;
 
     .cell {
@@ -80,6 +80,13 @@
 .cell {
   @include flex(null, center, null, wrap);
   @include make-spacer(p, 12px);
+}
+
+.label {
+
+  &.lower {
+    color: var(--color-warning);
+  }
 }
 
 .icon {

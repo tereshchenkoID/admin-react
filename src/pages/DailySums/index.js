@@ -107,6 +107,11 @@ const config_2 = [
     text: 'profit',
     convert: true
   },
+  {
+    key: 'profit_usd',
+    text: 'profit_usd',
+    convert: true
+  }
 ]
 
 const DailyReports = () => {
@@ -148,7 +153,7 @@ const DailyReports = () => {
 
   return (
     <>
-      <Paper headline={t('general_overview_report')} classes={['sm']}>
+      <Paper headline={t('daily_overview_report')} classes={['sm']}>
         <Debug data={filter} />
         <form onSubmit={handleSubmit}>
           <div className={style.grid}>

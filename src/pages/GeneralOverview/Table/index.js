@@ -106,50 +106,59 @@ const Option = ({
                     {
                       day.report.length > 0
                         ?
-                        day.report.map((report, report_idx) => (
-                          <div
-                            key={report_idx}
-                            className={classNames(style.row, style.lg)}
-                          >
-                            {
-                              config_2.map((key, value_idx) => (
-                                <div
-                                  key={value_idx}
-                                  className={style.cell}
-                                >
-                                  {
-                                    key.key === 'date-from'
-                                      ?
-                                      report_idx === 0
+                          day.report.map((report, report_idx) => (
+                            <div
+                              key={report_idx}
+                              className={classNames(style.row, style.lg)}
+                            >
+                              {
+                                config_2.map((key, value_idx) => (
+                                  <div
+                                    key={value_idx}
+                                    className={style.cell}
+                                  >
+                                    {
+                                      key.key === 'date-from'
                                         ?
-                                        <>
-                                          <div>{day['date-from']}</div>
-                                          <div>{day['date-to']}</div>
-                                        </>
-                                        :
-                                        ''
-                                      :
-                                      key.convert
-                                        ?
-                                        convertFixed(report[key.key])
-                                        :
-                                        report[key.key]
-                                  }
-                                </div>
-                              ))
-                            }
-                          </div>
-                        ))
+                                          report_idx === 0
+                                            ?
+                                              <>
+                                                <div>{day['date-from']}</div>
+                                                <div>{day['date-to']}</div>
+                                              </>
+                                            :
+                                              ''
+                                          :
+                                            key.convert
+                                              ?
+                                                <span
+                                                  className={
+                                                    classNames(
+                                                      style.label,
+                                                      report[key.key] < 0 && style.lower
+                                                    )
+                                                  }
+                                                >
+                                                  {convertFixed(report[key.key])}
+                                                </span>
+                                              :
+                                                report[key.key]
+                                    }
+                                  </div>
+                                ))
+                              }
+                            </div>
+                          ))
                         :
-                        <div className={classNames(style.row, style.wide)}>
-                          <div className={style.cell}>
-                            <div>{day['date-from'].slice(0, -3)}</div>
-                            <div>{day['date-to'].slice(0, -3)}</div>
+                          <div className={classNames(style.row, style.wide)}>
+                            <div className={style.cell}>
+                              <div>{day['date-from'].slice(0, -3)}</div>
+                              <div>{day['date-to'].slice(0, -3)}</div>
+                            </div>
+                            <div className={style.cell}>
+                              {t('no_matching_records_found')}
+                            </div>
                           </div>
-                          <div className={style.cell}>
-                            {t('no_matching_records_found')}
-                          </div>
-                        </div>
                     }
                   </React.Fragment>
                 ))}
